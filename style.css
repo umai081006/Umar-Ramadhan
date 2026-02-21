@@ -20,7 +20,7 @@ body {
     align-items: center;
     padding: 20px 8%;
     background: #111827;
-    flex-wrap: wrap;
+    position: relative;
 }
 
 .logo {
@@ -32,11 +32,11 @@ body {
     color: #ea580c;
 }
 
+/* NAV LINKS */
 .nav-links {
     display: flex;
     list-style: none;
     gap: 25px;
-    flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -50,6 +50,25 @@ body {
     color: #ea580c;
 }
 
+/* HAMBURGER */
+#menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    transition: 0.3s;
+}
+
 /* SECTION */
 section {
     padding: 80px 8%;
@@ -60,7 +79,7 @@ h2 {
     font-size: 28px;
 }
 
-/* Hero */
+/* HERO */
 .hero {
     display: flex;
     align-items: center;
@@ -90,10 +109,15 @@ h2 {
     margin-bottom: 15px;
 }
 
+/* FIX SPACING BUTTON */
 .hero-buttons {
-    margin-top: 20px;
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
+/* BUTTON */
 .btn-primary,
 .btn-secondary,
 .btn-tertiary {
@@ -102,6 +126,7 @@ h2 {
     text-decoration: none;
     font-size: 14px;
     transition: 0.3s ease;
+    display: inline-block;
 }
 
 .btn-primary {
@@ -135,6 +160,7 @@ h2 {
     background: white;
     color: black;
 }
+
 /* Tentang */
 .tentang-grid {
     display: grid;
@@ -235,14 +261,13 @@ th, td {
     gap: 20px;
 }
 
-/* CONTACT CARD */
 .contact-card {
     background: #1f2937;
     padding: 20px;
     border-radius: 12px;
 }
 
-/* FANCY EFFECT */
+/* FANCY */
 .fancy-card {
     border: 1px solid #2c3748;
     transition: 0.3s ease;
@@ -251,7 +276,6 @@ th, td {
 .fancy-card:hover {
     transform: translateY(-4px);
     border-color: #b91c1c;
-    box-shadow: 0 10px 25px rgba(20, 184, 166, 0.15);
 }
 
 /* TAG */
@@ -296,7 +320,45 @@ footer {
     }
 }
 
-@media(max-width: 600px){
+@media(max-width: 768px){
+
+    .hamburger {
+        display: flex;
+        z-index: 1001;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #111827;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 0;
+
+        /* FIX BOCOR */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+
+        transition: 
+            max-height 0.3s ease,
+            opacity 0.3s ease,
+            padding 0.3s ease;
+        
+        z-index: 1000;
+    }
+
+    #menu-toggle:checked ~ .nav-links {
+        max-height: 500px;
+        padding: 20px 0;
+        opacity: 1;
+        visibility: visible;
+    }
+
     .hero {
         flex-direction: column;
         text-align: center;
@@ -311,3 +373,18 @@ footer {
     }
 }
 
+@media (max-width: 520px) {
+
+    .hero-buttons {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+        max-width: 260px;
+        text-align: center;
+    }
+
+}
